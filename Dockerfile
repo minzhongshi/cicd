@@ -1,8 +1,7 @@
 FROM node:latest as builder
-WORKDIR /chichi
+WORKDIR /VueCICD
 COPY package.json .
-RUN npm i -f -g pnpm
-RUN pnpm install --registry=http://registry.npm.taobao.org --no-frozen-lockfile
+RUN npm install --registry=http://registry.npm.taobao.org --no-frozen-lockfile
 COPY . .
 RUN npm run build
 FROM nginx:latest
