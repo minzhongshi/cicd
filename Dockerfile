@@ -1,7 +1,7 @@
 FROM node:latest as builder
 WORKDIR /VueCICD
 COPY package.json .
-RUN npm install --no-frozen-lockfile
+RUN npm install --registry=http://registry.npm.taobao.org
 COPY . .
 RUN npm run build
 FROM nginx:latest
