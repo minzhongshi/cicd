@@ -35,5 +35,5 @@ job_deploy:
   script:
     - docker build -t vue3cicd.
     - if [ $(docker ps -aq --filter name=myvue3-container) ]; then docker rm -f myvue3-container;fi
-    - docker run -d -p 8083:80 --name myvue3-container viteimages
+    - docker run -d -p 8083:80 --name myvue3-container vue3cicd
 
