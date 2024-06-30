@@ -16,25 +16,24 @@ cache:
 job_install:
   stage: install
   tags:
-    - vite
+    - vue3-cicd
   script:
-    - npm i -f -g pnpm
-    - pnpm install --no-frozen-lockfile
+    - npm install
 
 job_build:
   stage: build
   tags:
-    - vite
+    - vue3-cicd
   script:
-    - pnpm build:h5
+    - npm build
 
 job_deploy:
   stage: deploy
   image: docker
   tags:
-    - vite
+    - vue3-cicd
   script:
     - docker build -t viteimages .
-    - if [ $(docker ps -aq --filter name=myvite-container) ]; then docker rm -f myvite-container;fi
-    - docker run -d -p 8082:80 --name myvite-container viteimages
+    - if [ $(docker ps -aq --filter name=myvue3-container) ]; then docker rm -f myvite-container;fi
+    - docker run -d -p 8083:80 --name myvue3-container viteimages
 
